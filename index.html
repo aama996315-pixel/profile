@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملف أعمالنا | قصص نجاح العملاء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14201c;
+    --paper:#f6f3ec;
+    --emerald:#1f3b32;
+    --emerald-deep:#0f211c;
+    --gold:#b08d4f;
+    --gold-light:#d9bd86;
+    --line:#d8cdb6;
+    --muted:#5a6b62;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Almarai', sans-serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Tajawal', sans-serif;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- texture / signature motif ---------- */
+  .seal{
+    width:54px; height:54px;
+    border:1.5px solid var(--gold);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    flex:none;
+  }
+  .seal::before{
+    content:"";
+    width:30px; height:30px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+  }
+  .seal::after{
+    content:"";
+    position:absolute;
+    width:6px; height:6px;
+    background:var(--gold);
+    border-radius:50%;
+  }
+
+  .thread{
+    height:1px;
+    background:linear-gradient(to left, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+    margin:64px 0;
+  }
+
+  /* ---------- cover ---------- */
+  .cover{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 85% 12%, rgba(176,141,79,0.16), transparent 42%),
+      radial-gradient(circle at 8% 90%, rgba(176,141,79,0.10), transparent 38%),
+      linear-gradient(165deg, var(--emerald-deep) 0%, var(--emerald) 62%, #1a342c 100%);
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 64px);
+    pointer-events:none;
+  }
+  .cover-top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:40px 28px 0;
+    max-width:1080px; margin:0 auto; width:100%;
+  }
+  .cover-top .brand{
+    font-family:'Tajawal',sans-serif; font-weight:800; font-size:18px;
+    letter-spacing:.5px; color:var(--gold-light);
+  }
+  .cover-mid{
+    flex:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:60px 28px;
+  }
+  .eyebrow{
+    font-size:14px; letter-spacing:4px; color:var(--gold-light);
+    text-transform:uppercase; margin-bottom:28px; font-family:'Tajawal',sans-serif; font-weight:700;
+  }
+  .cover h1{
+    font-size:clamp(40px, 7vw, 76px);
+    font-weight:900;
+    margin:0 0 18px;
+    line-height:1.25;
+  }
+  .cover h1 span{ color:var(--gold-light); }
+  .cover p.lede{
+    max-width:560px;
+    font-size:19px;
+    color:#dfe8e2;
+    font-weight:300;
+    margin:0;
+  }
+  .cover-bottom{
+    border-top:1px solid rgba(217,189,134,0.25);
+    padding:26px 28px 34px;
+  }
+  .cover-bottom .wrap{
+    display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+    font-size:13px; color:#b9c7bf;
+  }
+  .cover-stats{ display:flex; gap:40px; flex-wrap:wrap;}
+  .cover-stats div b{ display:block; font-family:'Tajawal',sans-serif; font-size:26px; color:var(--gold-light); font-weight:800;}
+
+  /* ---------- generic section ---------- */
+  section{ padding:100px 0; }
+  .section-head{
+    display:flex; align-items:center; gap:20px; margin-bottom:46px;
+  }
+  .section-head .num{
+    font-family:'Tajawal',sans-serif; font-weight:900; font-size:14px; color:var(--gold);
+    letter-spacing:2px;
+  }
+  .section-head h2{
+    font-size:34px; font-weight:800; margin:0; color:var(--emerald-deep);
+  }
+  .section-head::after{
+    content:""; flex:1; height:1px; background:var(--line);
+  }
+
+  /* about */
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start;
+  }
+  .about-grid p{ font-size:18px; color:#33453d; }
+  .about-pillars{ display:flex; flex-direction:column; gap:22px; }
+  .pillar{
+    border-right:3px solid var(--gold);
+    padding-right:18px;
+  }
+  .pillar b{ font-family:'Tajawal',sans-serif; display:block; margin-bottom:4px; font-size:16px;}
+  .pillar span{ color:var(--muted); font-size:15px; }
+
+  /* services */
+  .svc-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .svc{
+    background:var(--card);
+    padding:32px 26px;
+    min-height:170px;
+  }
+  .svc b{ font-family:'Tajawal',sans-serif; font-size:18px; display:block; margin-bottom:10px; color:var(--emerald-deep);}
+  .svc span{ color:var(--muted); font-size:14.5px; }
+
+  /* case studies */
+  .case{
+    background:var(--card);
+    border:1px solid var(--line);
+    margin-bottom:48px;
+  }
+  .case-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding:34px 38px 24px;
+    border-bottom:1px solid var(--line);
+    gap:20px; flex-wrap:wrap;
+  }
+  .case-head .tag{
+    font-family:'Tajawal',sans-serif; color:var(--gold); font-weight:800; font-size:13px; letter-spacing:2px; margin-bottom:8px; display:block;
+  }
+  .case-head h3{ font-size:28px; margin:0; font-weight:800; color:var(--emerald-deep);}
+  .case-head a.handle{
+    font-size:14px; color:var(--muted); text-decoration:none; border-bottom:1px dashed var(--line);
+  }
+  .case-body{ padding:34px 38px 38px; }
+.media-slot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px auto; /* هذا يوسّط الحاوية */
+    overflow: hidden;
+    border-radius: 6px;
+    max-width: 100%;
+    background: transparent;
+}
+.media-slot img{
+    max-width: 100%;
+    max-height: 230px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+.video-slot{
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 30px auto;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 8px;
+}
+.video-slot video{
+    max-width: 100%;
+  
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+  .case-cols{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:34px; margin-bottom:30px;
+  }
+  .case-block b{ font-family:'Tajawal',sans-serif; display:block; font-size:16px; margin-bottom:10px; color:var(--emerald-deep);}
+  ul.clean{ margin:0; padding:0; list-style:none; }
+  ul.clean li{
+    padding-right:18px; position:relative; margin-bottom:8px; color:#3e4d46; font-size:15px;
+  }
+  ul.clean li::before{
+    content:""; position:absolute; right:0; top:10px; width:6px; height:1px; background:var(--gold);
+  }
+  .impact-strip{
+    display:flex; flex-wrap:wrap; gap:14px; margin-top:6px;
+  }
+  .impact-chip{
+    background:var(--emerald); color:var(--paper);
+    padding:10px 18px; border-radius:30px; font-size:13.5px;
+    font-family:'Tajawal',sans-serif; font-weight:500;
+  }
+  .case-footer-note{
+    margin-top:28px; padding-top:22px; border-top:1px solid var(--line);
+    font-size:15px; color:var(--muted); font-style:normal;
+  }
+  .case-footer-note b{ color:var(--emerald-deep); font-family:'Tajawal',sans-serif;}
+
+  /* visual proof section */
+  .proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .proof-card{
+    background:var(--card); border:1px solid var(--line); padding:26px;
+  }
+  .proof-card .media-slot{ height:160px; margin-bottom:18px; }
+  .proof-card p{ font-size:14px; color:var(--muted); margin:0; }
+
+  /* CTA */
+  .cta{
+    background:
+      radial-gradient(circle at 80% 20%, rgba(217,189,134,0.18), transparent 45%),
+      var(--emerald-deep);
+    color:var(--paper);
+    text-align:center;
+    padding:110px 28px;
+  }
+  .cta .seal{ margin:0 auto 30px; border-color:var(--gold-light); }
+  .cta .seal::before, .cta .seal::after{ background:var(--gold-light); border-color:var(--gold-light);}
+  .cta h2{
+    font-size:clamp(28px,5vw,46px); font-weight:900; margin:0 0 18px; max-width:780px; margin-inline:auto;
+  }
+  .cta p{ color:#cfdbd4; font-size:17px; max-width:520px; margin:0 auto 38px; }
+  .cta-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:16px 34px; border-radius:4px; font-family:'Tajawal',sans-serif;
+    font-weight:700; font-size:15px; text-decoration:none; transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn-primary{ background:var(--gold-light); color:var(--emerald-deep); }
+  .btn-outline{ border:1px solid rgba(217,189,134,0.5); color:var(--paper); }
+  .btn:hover{ transform:translateY(-2px); }
+
+  footer{
+    background:var(--emerald-deep); color:#86988f; text-align:center; padding:26px; font-size:13px;
+    border-top:1px solid rgba(217,189,134,0.15);
+  }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns:1fr; gap:40px; }
+    .svc-grid{ grid-template-columns:repeat(2,1fr); }
+    .case-cols{ grid-template-columns:1fr; }
+    .proof-grid{ grid-template-columns:1fr; }
+    .cover-stats{ gap:24px; }
+    section{ padding:70px 0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn:hover{ transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <div class="cover-top">
+    <div class="brand">نقدم حلول رقمية وتسويقية </div>
+    <div class="seal" aria-hidden="true"></div>
+  </div>
+  <div class="cover-mid">
+    <div class="eyebrow">ملف أعمال · 2026</div>
+    <h1>ملف أعمالنا<br><span>قصص نجاح العملاء</span></h1>
+    <p class="lede">ثلاث علامات تجارية، ثلاث رحلات نمو حقيقية — من حساب بلا هوية واضحة إلى حضور رقمي يُترجم إلى مبيعات.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="wrap">
+      <div class="cover-stats">
+        <div><b>3</b>دراسات حالة</div>
+        <div><b>+6</b>خدمات متخصصة</div>
+        <div><b>100%</b>تركيز على النتائج</div>
+      </div>
+      <div>التسويق الرقمي · الهوية البصرية · النمو</div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="num">٠١</span><h2>من نحن</h2></div>
+    <div class="about-grid">
+      <p>
+        نحن فريق متخصص في تحسين الحضور الرقمي للمتاجر والعلامات التجارية على منصات التواصل الاجتماعي.
+        نعمل على الجانبين معًا: الهوية البصرية التي تمنح الحساب طابعًا احترافيًا يُلفت الانتباه،
+        والاستراتيجية التسويقية التي تحوّل هذا الانتباه إلى تفاعل واستفسارات ومبيعات فعلية.
+        خبرتنا تمتد عبر قطاعات متنوعة — من المجوهرات إلى النباتات إلى الأزياء — وفي كل حالة كان الهدف واحدًا:
+        نتائج يمكن قياسها، لا مجرد مظهر جديد.
+      </p>
+      <div class="about-pillars">
+        <div class="pillar"><b>منهجية مبنية على البيانات</b><span>كل قرار تصميمي أو تسويقي يُقاس بأثره على التفاعل والمبيعات.</span></div>
+        <div class="pillar"><b>هوية بصرية متسقة</b><span>نحرص أن يعكس كل منشور وصورة مستوى العلامة التجارية الحقيقي.</span></div>
+        <div class="pillar"><b>شراكة طويلة الأمد</b><span>نرافق العميل من تحسين الحساب إلى بناء استراتيجية نمو مستدامة.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="thread wrap"></div>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head"><span class="num">٠٢</span><h2>خدماتنا</h2></div>
+    <div class="svc-grid">
+      <div class="svc"><b>إدارة حسابات التواصل الاجتماعي</b><span>تخطيط ونشر منظم يحافظ على حضور ثابت واحترافي.</span></div>
+      <div class="svc"><b>صناعة المحتوى</b><span>محتوى مكتوب ومرئي مصمم خصيصًا لهوية كل عميل.</span></div>
+      <div class="svc"><b>الحملات الإعلانية</b><span>حملات مدروسة تستهدف الجمهور الصحيح لتحقيق أعلى عائد.</span></div>
+      <div class="svc"><b>تحسين الهوية البصرية</b><span>توحيد الألوان والتصوير والأسلوب لرفع مستوى العلامة التجارية.</span></div>
+      <div class="svc"><b>تحسين المتاجر الإلكترونية</b><span>عرض منتجات أكثر جاذبية يسهّل قرار الشراء.</span></div>
+      <div class="svc"><b>استراتيجيات النمو</b><span>خطط واضحة لزيادة المتابعين والتفاعل والمبيعات بثبات.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="thread wrap"></div>
+
+<!-- ================= CASE STUDY 1 ================= -->
+<section id="case-1">
+  <div class="wrap">
+    <div class="section-head"><span class="num">٠٣</span><h2>دراسات الحالة</h2></div>
+
+    <div class="case">
+      <div class="case-head">
+        <div>
+          <span class="tag">دراسة حالة ٠١ — قطاع المجوهرات</span>
+          <h3>متجر مجوهرات</h3>
+        </div>
+        <a class="handle" href="https://www.instagram.com/alyafie_jewelry" target="_blank" rel="noopener">instagram.com/alyafie_jewelry</a>
+      </div>
+      <div class="case-body">
+        <div class="media-slot">
+          <img src="images/yaf.jpg" alt="yaf"></div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>١. نبذة عن النشاط</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">متجر مجوهرات يقدّم قطعًا فاخرة عبر حساب على إنستغرام، مع حاجة واضحة لتقديم المنتجات بمستوى يعكس قيمتها الحقيقية.</p>
+          </div>
+          <div class="case-block">
+            <b>٢. المشكلة قبل العمل</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">هوية بصرية غير موحدة وتصوير لا يعبّر عن فخامة المنتج، ما أثّر على مستوى التفاعل والاستفسارات.</p>
+          </div>
+        </div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>٣. الحلول المقدمة</b>
+            <ul class="clean">
+              <li>تحسين الهوية البصرية</li>
+              <li>تطوير المحتوى</li>
+              <li>تحسين عرض المنتجات</li>
+              <li>تحسين التصوير</li>
+              <li>رفع جودة البراند</li>
+            </ul>
+          </div>
+          <div class="case-block">
+            <b>٤. الاستراتيجية المستخدمة</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">إعادة بناء الهوية البصرية أولًا، ثم محاذاة المحتوى والتصوير معها بشكل متسق عبر كل منشور، لخلق انطباع فاخر وموثوق.</p>
+          </div>
+        </div>
+
+        <div class="case-block" style="margin-bottom:18px;">
+          <b>٥. النتائج</b>
+          <div class="impact-strip">
+            <span class="impact-chip">تحسين المظهر الاحترافي</span>
+            <span class="impact-chip">زيادة التفاعل</span>
+            <span class="impact-chip">زيادة الاستفسارات</span>
+            <span class="impact-chip">تعزيز صورة العلامة</span>
+            <span class="impact-chip">زيادة المتابعين</span>
+            <span class="impact-chip">زيادة المبيعات الرقمية</span>
+          </div>
+        </div>
+
+        <div class="case-footer-note">
+          <b>٦. أثر العمل على النشاط:</b> تحوّل الحساب من واجهة عرض بسيطة إلى أداة بيع فعّالة، حيث انعكس التحسن البصري مباشرة على ثقة العملاء المحتملين وقرارهم بالاستفسار والشراء.
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= CASE STUDY 2 ================= -->
+    <div class="case" id="case-2">
+      <div class="case-head">
+        <div>
+          <span class="tag">دراسة حالة ٠٢ — قطاع النباتات</span>
+          <h3>متجر نباتات</h3>
+        </div>
+        <a class="handle" href="https://www.instagram.com/nabataty" target="_blank" rel="noopener">instagram.com/nabataty</a>
+      </div>
+      <div class="case-body">
+        <div class="media-slot">
+          <img src="images/nabat.jpg" alt="nabat"></div>
+        <div class="media-slot">
+          <img src="images/nabatlogo.jpg" alt="nabatlogo"></div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>١. نبذة عن النشاط</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">متجر متخصص في بيع النباتات المنزلية، يعتمد بشكل كبير على المحتوى الموسمي وتجربة العرض البصري لجذب المهتمين.</p>
+          </div>
+          <div class="case-block">
+            <b>٢. المشكلة قبل العمل</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">محتوى غير مستثمر بالشكل الكافي خلال الحملات الموسمية، وعرض منتجات لا يعكس التنوع الحقيقي للمتجر.</p>
+          </div>
+        </div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>٣. الحلول المقدمة</b>
+            <ul class="clean">
+              <li>تطوير المحتوى</li>
+              <li>تحسين الحملات الموسمية</li>
+              <li>تحسين عرض المنتجات</li>
+              <li>تحسين استراتيجية النمو</li>
+            </ul>
+          </div>
+          <div class="case-block">
+            <b>٤. الاستراتيجية المستخدمة</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">بناء تقويم محتوى مرتبط بالمواسم والمناسبات، مع تحسين طريقة عرض كل منتج لتسهيل قرار التحويل من متابع إلى عميل.</p>
+          </div>
+        </div>
+
+        <div class="case-block" style="margin-bottom:18px;">
+          <b>٥. النتائج</b>
+          <div class="impact-strip">
+            <span class="impact-chip">زيادة الوصول</span>
+            <span class="impact-chip">رفع التفاعل</span>
+            <span class="impact-chip">تحسين التحويلات</span>
+          </div>
+        </div>
+
+        <div class="case-footer-note">
+          <b>٦. أثر العمل على النشاط:</b> أصبحت الحملات الموسمية محركًا فعليًا للنمو بدل أن تكون منشورات عابرة، مع تحسّن ملحوظ في معدلات التحويل من المتابعين إلى مشترين فعليين.
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= CASE STUDY 3 ================= -->
+    <div class="case" id="case-3">
+      <div class="case-head">
+        <div>
+          <span class="tag">دراسة حالة ٠٣ — قطاع الأزياء</span>
+          <h3>متجر عبايات</h3>
+        </div>
+        <a class="handle" href="https://www.instagram.com/abaya_bsmb" target="_blank" rel="noopener">instagram.com/abaya_bsmb</a>
+      </div>
+      <div class="case-body">
+        <div class="media-slot">
+          <img src="images/basmat.jpg" alt="basmat"></div>
+          <div class="media-slot">
+          <img src="images/basmatlogo.jpg" alt="basmatlogo"></div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>١. نبذة عن النشاط</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">متجر عبايات يستهدف جمهورًا يبحث عن أناقة وجودة، في سوق تنافسي يعتمد بشكل كبير على الانطباع البصري الأول.</p>
+          </div>
+          <div class="case-block">
+            <b>٢. المشكلة قبل العمل</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">محتوى بيعي مباشر دون جاذبية كافية، وهوية بصرية لا تميّز الحساب عن المنافسين في نفس القطاع.</p>
+          </div>
+        </div>
+
+        <div class="case-cols">
+          <div class="case-block">
+            <b>٣. الحلول المقدمة</b>
+            <ul class="clean">
+              <li>تطوير الهوية البصرية</li>
+              <li>تحسين المحتوى البيعي</li>
+              <li>تحسين عرض المنتجات</li>
+              <li>رفع جاذبية الحساب</li>
+            </ul>
+          </div>
+          <div class="case-block">
+            <b>٤. الاستراتيجية المستخدمة</b>
+            <p style="margin:0;color:#3e4d46;font-size:15px;">إعادة صياغة لغة المحتوى البيعي بأسلوب أقرب للعميل، مع توحيد الهوية البصرية لخلق تمييز واضح عن المنافسين.</p>
+          </div>
+        </div>
+
+        <div class="case-block" style="margin-bottom:18px;">
+          <b>٥. النتائج</b>
+          <div class="impact-strip">
+            <span class="impact-chip">زيادة التفاعل</span>
+            <span class="impact-chip">زيادة الاستفسارات</span>
+            <span class="impact-chip">تحسين صورة العلامة</span>
+            <span class="impact-chip">زيادة المتابعين</span>
+            <span class="impact-chip">زيادة العملاء والمبيعات</span>
+          </div>
+        </div>
+
+        <div class="case-footer-note">
+          <b>٦. أثر العمل على النشاط:</b> انتقل الحساب من حضور عام إلى علامة تجارية مميزة في قطاعها، بأثر مباشر على عدد العملاء الجدد وحجم المبيعات.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="thread wrap"></div>
+
+<!-- ================= VISUAL PROOF ================= -->
+<section id="proof">
+  <div class="wrap">
+    <div class="section-head"><span class="num">٠٤</span><h2>تصويرنا</h2></div>
+    
+    <div class="proof-grid">
+      
+      <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/2.mp4" type="video/mp4">
+    </video>
+</div>
+        
+      
+      
+              <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/1.mp4" type="video/mp4">
+    </video>
+</div>
+        
+      
+            <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/3.mp4" type="video/mp4">
+    </video>
+</div>
+      <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/4.mp4" type="video/mp4">
+    </video>
+</div>
+      <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/1.mp4" type="video/mp4">
+    </video>
+</div>
+      <div class="video-slot">
+    <video autoplay muted loop playsinline>
+        <source src="video/5.mp4" type="video/mp4">
+    </video>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta">
+  <div class="seal" aria-hidden="true"></div>
+  <h2>جاهزون لمساعدتك في بناء حضور أقوى وتحقيق نتائج أفضل</h2>
+  <p>إذا كانت علامتك التجارية تستحق حضورًا يعكس قيمتها الحقيقية، فالخطوة التالية هي محادثة قصيرة معنا.</p>
+  <div class="cta-actions">
+    <a class="btn btn-outline" href="#case-1">استعراض الأعمال</a>
+  </div>
+</section>
+
+<footer>
+  حلول رقمية وتسويقية  — ملف أعمال 2026
+</footer>
+
+</body>
+</html>
